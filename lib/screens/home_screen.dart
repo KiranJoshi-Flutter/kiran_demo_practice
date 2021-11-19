@@ -3,6 +3,18 @@ import 'package:kiran_demo_practice/screens/about_us_screen.dart';
 import 'package:kiran_demo_practice/screens/contact_us_screen.dart';
 import 'package:kiran_demo_practice/screens/posts_screen.dart';
 
+class Album {
+  final int page;
+  final int perPage;
+  final List<dynamic> datas;
+
+  Album({
+    @required this.page,
+    @required this.perPage,
+    @required this.datas,
+  });
+}
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
 
@@ -11,6 +23,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future<Album> futureAlbum;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,6 +114,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+        ),
+      ),
+      body: Center(
+        child: FutureBuilder<Album>(
+          future: futureAlbum,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Container();
+            }
+            return Container();
+          },
         ),
       ),
     );
